@@ -75,6 +75,9 @@ Route::group(['prefix' => 'test'], function(){
     Route::get('uri','TestController@getUri');
 });
 
+Route::post('wxpay/callback', 'WxPayController@payCallback');
+Route::get('pay', 'OrdersController@pay');
+
 
 
 
