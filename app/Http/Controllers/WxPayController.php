@@ -46,6 +46,7 @@ class WxPayController extends Controller
 
             #返回值中不包含transaction_id时，此时用户尚未生成支付订单
             if(!isset($notify->transaction_id)){
+                Cache::add('notify',$notify,10);
                 Log::info('This is user id --'.$notify->openid.'|| 产品id '.$notify->product_id.'|| '.$notify->prepay_id);
                 $order = new Order([
                     'body'             => Str::random(16),
@@ -156,6 +157,11 @@ class WxPayController extends Controller
 
     public function getCache()
     {
-       dd(Cache::get('result'));
+        dd(Cache::get('result'));
+    }
+
+    public function getNotify()
+    {
+        dd(Cache::get('notify'));
     }
 }
