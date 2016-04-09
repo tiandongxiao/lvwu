@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 use EasyWeChat\Support\XML;
 
@@ -49,7 +50,7 @@ class WxPayController extends Controller
                 $order = new Order([
                     'body'             => 'iPad mini 16G 白色',
                     'detail'           => 'iPad mini 16G 白色',
-                    'out_trade_no'     => '1217752501201407033233368018',
+                    'out_trade_no'     => Str::random(16),
                     'total_fee'        => 1,
                     'notify_url'       => 'http://www.exingdong.com/wxpay/order/callback',
                     'trade_type'        =>  'NATIVE'
