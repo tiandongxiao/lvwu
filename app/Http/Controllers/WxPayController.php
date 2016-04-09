@@ -53,7 +53,7 @@ class WxPayController extends Controller
                     'notify_url'       => 'http://www.exingdong.com/wxpay/order/callback',
                     'trade_type'        =>  'NATIVE'
                 ]);
-                return $result = $this->payment->prepare($order);                
+                return  $this->payment->prepare($order);                
             }else{
                 Log::info('This is notify transaction id --'.$notify->transaction_id.'||'.$successful);
             }
