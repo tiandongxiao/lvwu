@@ -156,7 +156,7 @@ class AuthWeChatController extends Controller
                     break;
                 case 'text':
                     Log::info($userApi->get($message->FromUserName)->nickname);
-                    return '你好'.$userApi->get($message->FromUserName)->nickname;
+                    return '你好! '.$userApi->get($message->FromUserName)->nickname;
                     break;
                 case 'image':
                     # 图片消息...
