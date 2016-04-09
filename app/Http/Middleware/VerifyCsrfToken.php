@@ -12,6 +12,8 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        'wxpay/callback/'
+        'wxpay/callback/',
+        'wx/serve/'
+
     ];
 }
