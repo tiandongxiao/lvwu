@@ -154,7 +154,8 @@ class AuthWeChatController extends Controller
                     # 事件消息...
                     break;
                 case 'text':
-                    return '你好'.$userApi->get($message->FromUserName)->nickname;
+                    //return '你好'.$userApi->get($message->FromUserName)->nickname;
+                    return '你好';
                     break;
                 case 'image':
                     # 图片消息...
