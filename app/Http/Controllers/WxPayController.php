@@ -52,7 +52,7 @@ class WxPayController extends Controller
                     'body'             => Str::random(16),
                     'detail'           => Str::random(16),
                     'out_trade_no'     => Str::random(16),
-                    'total_fee'        => 1,                    
+                    'total_fee'        => 1,
                     'trade_type'       =>  'NATIVE'
                 ]);
 
@@ -60,7 +60,7 @@ class WxPayController extends Controller
                 $prepay_id = $result->prepay_id;
                 Cache::forget('result');
                 Cache::add('result',$result,10);
-                return $result;
+                return true;
             }else{
                 Log::info('This is notify transaction id --'.$notify->transaction_id.'||'.$successful);
             }
