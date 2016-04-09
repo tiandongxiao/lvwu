@@ -42,8 +42,14 @@ class WxPayController extends Controller
     {
         $response = $this->payment->handleNotify(function($notify, $successful){
 
-            // 使用通知里的 "微信支付订单号" 或者 "商户订单号" 去自己的数据库找到订单
-            Log::info('This is notify transaction id --'.$notify->transaction_id.'||'.$successful);
+            #返回值中不包含transaction_id时，此时用户尚未下单
+            if(isset($notify->transaction_id)){
+                Log::info('This is user id --'.$notify->openid.'|| 产品id '.$notify->product_id);
+            }else{
+                Log::info('This is notify transaction id --'.$notify->transaction_id.'||'.$successful);
+            }
+
+// 使用通知里的 "微信支付订单号" 或者 "商户订单号" 去自己的数据库找到订单
 //            $order = 查询订单($notify->transaction_id);
 //
 //            if (!$order) { // 如果订单不存在
