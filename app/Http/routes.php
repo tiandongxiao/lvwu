@@ -77,7 +77,7 @@ Route::group(['prefix' => 'test'], function(){
 
 Route::get('order', 'WxPayController@newOrder');
 Route::any('wxpay/callback', 'WxPayController@payCallback');
-Route::any('wxpay/ordercallback', 'WxPayController@orderCallback');
+Route::any('wxpay/order/callback', 'WxPayController@orderCallback');
 Route::get('pay', 'OrdersController@pay');
 Route::get('wxpay/test/{product_id}', 'WxPayController@payTest');
 Route::get('buy', 'WxPayController@buyProduct');
