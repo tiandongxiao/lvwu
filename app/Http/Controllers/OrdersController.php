@@ -21,15 +21,31 @@ class OrdersController extends Controller
             'order_no'  => time().rand(1000,99999),
             'amount'    => '100',
             'app'       => ['id' => 'app_unT0W5zjDiHSWfrz'],
-            'channel'   => 'wx_pub_qr',
+            'channel'   => 'wx_pub',
             'currency'  => 'cny',
             'client_ip' => $request->ip(),
             'subject'   => 'demo',
             'body'      => '1_32',
             'extra'     =>[
-                'product_id' => 'Productid'
+                'open_id' => 'Productid'
             ]
         ]);
         return view('payment.pay',compact('charge'));
+    }
+
+    public function payTest()
+    {
+        
+    }
+
+    public function scan1()
+    {
+                
+        
+    }
+
+    public function scan2()
+    {
+        
     }
 }

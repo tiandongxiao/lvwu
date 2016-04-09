@@ -155,6 +155,7 @@ return [
         Overtrue\LaravelWechat\ServiceProvider::class, //微信开发包
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,//Log服务
         PragmaRX\Tracker\Vendor\Laravel\ServiceProvider::class,//Boss级数据跟踪系统
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,//二维码
     ],
 
     /*
@@ -214,5 +215,7 @@ return [
         'Socialite' => Overtrue\LaravelSocialite\Socialite::class,//第三方登录
         'Wechat' => Overtrue\LaravelWechat\Facade::class, //微信开发包
         'Tracker' => PragmaRX\Tracker\Vendor\Laravel\Facade::class,//Boss级数据跟踪系统
+
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class, //二维码
     ],
 ];

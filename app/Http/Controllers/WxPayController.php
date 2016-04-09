@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use EasyWeChat\Foundation\Application;
+use EasyWeChat\Payment\Order;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -32,6 +33,7 @@ class WxPayController extends Controller
     {
         $this->app = new Application($this->options);
         $this->payment = $this->app->payment;
+
     }
     public function payCallback()
     {
@@ -40,11 +42,43 @@ class WxPayController extends Controller
 
     public function newOrder()
     {
-        
+        $order = new Order([
+            'body'             => 'iPad mini 16G 白色',
+            'detail'           => 'iPad mini 16G 白色',
+            'out_trade_no'     => '1217752501201407033233368018',
+            'total_fee'        => 1,
+            'notify_url'       => 'http://www.exingdong.com/wxpay/callback',
+            'trade_type'        =>  'NATIVE'
+        ]);
+        $result = $this->payment->prepare($order);
+        $prepayId = $result->prepay_id;
+
+
+        $json = $this->payment->configForPayment($prepayId,false);
+
+
+
+
+        dd($json);
     }
 
     public function generateQrCode()
     {
         
+    }
+
+    public function buyProduct()
+    {
+        $product_id = 'thisisanewgood';
+        $price = 1;
+        $url = $this->payment->scheme('goodhappy');
+        return view('payment.good',compact('url','price'));
+    }
+
+    public function payTest($product_id)
+    {
+        $price = random_int(1,10);
+        $url = $this->payment->scheme($product_id);
+        return view('payment.good',compact('url','price'));
     }
 }
