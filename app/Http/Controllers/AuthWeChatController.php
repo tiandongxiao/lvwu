@@ -122,7 +122,7 @@ class AuthWeChatController extends Controller
         }
     }
 
-    public function wxCheck()
+    public function serve()
     {
         $wechat = app('wechat');
         $wechat->server->setMessageHandler(function($message){

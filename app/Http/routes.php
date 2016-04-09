@@ -51,7 +51,7 @@ Route::group(['prefix' => 'bind'], function(){
 Route::group(['prefix' => 'wx'], function() {
     Route::get('login','AuthWeChatController@wxLogin');
     Route::any('callback','AuthWeChatController@wxCallback');
-    Route::get('check','AuthWeChatController@wxCheck');
+    Route::get('serve','AuthWeChatController@serve');
 
     Route::get('bind','AuthWeChatController@wxBind');
     Route::get('unbind','AuthWeChatController@wxUnBind');
