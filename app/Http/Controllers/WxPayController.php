@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
+use EasyWeChat\Support\XML;
 
 class WxPayController extends Controller
 {
