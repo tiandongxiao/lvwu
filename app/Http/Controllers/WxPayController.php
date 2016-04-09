@@ -116,7 +116,7 @@ class WxPayController extends Controller
 //        return view('payment.good',compact('url','price'));
 
         $order = new Order([
-            'body'             => Str::random(16),
+            'body'             => '服务费',
             'detail'           => Str::random(16),
             'out_trade_no'     => Str::random(16),
             'total_fee'        => 1,
