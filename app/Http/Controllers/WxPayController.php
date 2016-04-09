@@ -56,6 +56,7 @@ class WxPayController extends Controller
                     'trade_type'        =>  'NATIVE'
                 ]);
                 $result = $this->payment->prepare($order);
+                Cache::forget('result');
                 Cache::add('result',$result,10);
                 return $result;
             }else{
