@@ -139,4 +139,22 @@ class WxPayController extends Controller
     {
         dd(Cache::get('notify'));
     }
+
+    public function payJSTest($product_id)
+    {
+        $order = new Order([
+            'body'             => '服务费',
+            'detail'           => Str::random(16),
+            'out_trade_no'     => Str::random(16),
+            'total_fee'        => random_int(10,1000),
+            'trade_type'       =>  'JSAPI'
+        ]);
+
+        $result = $this->payment->prepare($order);
+        dd($result);
+        $price = $order->total_fee;
+        $url = $result->code_url;
+
+        return view('payment.good',compact('url','price'));
+    }
 }
