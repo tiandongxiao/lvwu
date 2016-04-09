@@ -52,13 +52,12 @@ class WxPayController extends Controller
                     'body'             => Str::random(16),
                     'detail'           => Str::random(16),
                     'out_trade_no'     => Str::random(16),
-                    'total_fee'        => 1,
-                    'notify_url'       => 'http://www.exingdong.com/wxpay/order/callback',
+                    'total_fee'        => 1,                    
                     'trade_type'       =>  'NATIVE'
                 ]);
 
                 $result = $this->payment->prepare($order);
-                $prepay_id = $result->prepay_id;                
+                $prepay_id = $result->prepay_id;
                 Cache::forget('result');
                 Cache::add('result',$result,10);
                 return $result;
