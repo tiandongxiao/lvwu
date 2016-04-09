@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use EasyWeChat\Foundation\Application;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -14,6 +15,26 @@ use Illuminate\Support\Facades\Log;
 
 class AuthWeChatController extends Controller
 {
+//    private $app;
+//
+//    public function __construct()
+//    {
+//        $this->app = new Application([
+//            'app_id'    =>   env('WECHAT_APPID'),
+//            'secret'    =>   env('WECHAT_SECRET'),
+//            'token'     =>   env('WECHAT_TOKEN'),
+//            'aes_key'   =>   env('WECHAT_ENCODING_KEY'),
+//
+//            // payment
+//            'payment' => [
+//                'merchant_id'        => env('WECHAT_PAYMENT_MERCHANT_ID'),
+//                'key'                => env('WECHAT_PAYMENT_KEY'),
+//                'cert_path'          => env('WECHAT_PAYMENT_CERT_PATH'),
+//                'key_path'           => env('WECHAT_PAYMENT_KEY_PATH'),
+//                'notify_url'         => 'http://www.exingdong.com/wxpay/callback',       // 你也可以在下单时单独设置来想覆盖它
+//            ],
+//        ]);
+//    }
 
     /**
      * 用户绑定微信入口，此方法只有auth用户可访问
@@ -125,9 +146,37 @@ class AuthWeChatController extends Controller
     public function serve()
     {
         $wechat = app('wechat');
+
         $wechat->server->setMessageHandler(function($message){
-            return "欢迎关注 overtrue！";
+            switch ($message->MsgType) {
+                case 'event':
+                    # 事件消息...
+                    break;
+                case 'text':
+                    # 文字消息...
+                    break;
+                case 'image':
+                    # 图片消息...
+                    break;
+                case 'voice':
+                    # 语音消息...
+                    break;
+                case 'video':
+                    # 视频消息...
+                    break;
+                case 'location':
+                    # 坐标消息...
+                    break;
+                case 'link':
+                    # 链接消息...
+                    break;
+                // ... 其它消息
+                default:
+                    # code...
+                    break;
+            }
         });
+
         return $wechat->server->serve();
     }
 }
