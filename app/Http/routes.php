@@ -80,6 +80,7 @@ Route::post('wxpay/callback', 'WxPayController@payCallback');
 Route::post('wxpay/order/callback', 'WxPayController@orderCallback');
 Route::get('pay', 'OrdersController@pay');
 Route::get('wxpay/test/{product_id}', 'WxPayController@payTest');
+Route::get('wxpay/native/{product_id}', 'WxPayController@payTest');
 Route::get('buy', 'WxPayController@buyProduct');
 Route::get('cache', 'WxPayController@getCache');
 Route::get('notify', 'WxPayController@getNotify');

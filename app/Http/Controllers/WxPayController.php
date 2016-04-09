@@ -43,29 +43,35 @@ class WxPayController extends Controller
     public function payCallback()
     {
         $response = $this->payment->handleNotify(function($notify, $successful){
-            if(is_null($notify)){
-                Log::error('Notify is empty');
-            }
             #返回值中不包含transaction_id时，此时用户尚未生成支付订单
-            if(!isset($notify->transaction_id)){
-                Cache::add('notify',$notify,10);
-                Log::info('This is user id --'.$notify->openid.'|| 产品id '.$notify->product_id.'|| '.$notify->prepay_id);
-                $order = new Order([
-                    'body'             => Str::random(16),
-                    'detail'           => Str::random(16),
-                    'out_trade_no'     => Str::random(16),
-                    'total_fee'        => 1,
-                    'trade_type'       =>  'NATIVE'
-                ]);
+            Log::info('This is notify transaction id --'.$notify->transaction_id.'||'.$successful);
 
-                $result = $this->payment->prepare($order);
-                Cache::forget('result');
-                Cache::add('result',$result,10);
-                return $result;
+            // 使用通知里的 "微信支付订单号" 或者 "商户订单号" 去自己的数据库找到订单
+            $order = 查询订单($notify->transaction_id);
 
-            }else{
-                Log::info('This is notify transaction id --'.$notify->transaction_id.'||'.$successful);
+            if (!$order) { // 如果订单不存在
+                return 'Order not exist.'; // 告诉微信，我已经处理完了，订单没找到，别再通知我了
             }
+
+            // 如果订单存在
+            // 检查订单是否已经更新过支付状态
+            if ($order->paid_at) { // 假设订单字段“支付时间”不为空代表已经支付
+                return true; // 已经支付成功了就不再更新了
+            }
+
+            // 用户是否支付成功
+            if ($successful) {
+                // 不是已经支付状态则修改为已经支付状态
+                $order->paid_at = time(); // 更新支付时间为当前时间
+                $order->status = 'paid';
+            } else { // 用户支付失败
+                $order->status = 'paid_fail';
+            }
+
+            $order->save(); // 保存订单
+
+            return true; // 返回处理完成
+
         });
 
         return $response;
@@ -108,13 +114,6 @@ class WxPayController extends Controller
 
     public function payTest($product_id)
     {
-//        $price = random_int(1,10);
-//        $url = $this->payment->scheme($product_id);
-//
-//
-//
-//        return view('payment.good',compact('url','price'));
-
         $order = new Order([
             'body'             => '服务费',
             'detail'           => Str::random(16),
