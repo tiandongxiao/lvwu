@@ -62,7 +62,7 @@ class WxPayController extends Controller
 
                 Cache::forget('result');
                 Cache::add('result',$result,10);
-                return $this->payment->configForPayment($prepay_id ,false);
+                return $result;
             }else{
                 Log::info('This is notify transaction id --'.$notify->transaction_id.'||'.$successful);
             }
