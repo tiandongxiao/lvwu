@@ -46,7 +46,7 @@ class WxPayController extends Controller
 
             #返回值中不包含transaction_id时，此时用户尚未生成支付订单
             if(!isset($notify->transaction_id)){
-                Log::info('This is user id --'.$notify->openid.'|| 产品id '.$notify->product_id);
+                Log::info('This is user id --'.$notify->openid.'|| 产品id '.$notify->product_id.'|| '.$notify->prepay_id);
                 $order = new Order([
                     'body'             => Str::random(16),
                     'detail'           => Str::random(16),
