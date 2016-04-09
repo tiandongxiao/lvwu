@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 use EasyWeChat\Support\XML;
@@ -53,7 +54,8 @@ class WxPayController extends Controller
                     'notify_url'       => 'http://www.exingdong.com/wxpay/order/callback',
                     'trade_type'        =>  'NATIVE'
                 ]);
-                return  $this->payment->prepare($order);                
+                $result = $this->payment->prepare($order);
+                Cache::add('result',$result,10);
             }else{
                 Log::info('This is notify transaction id --'.$notify->transaction_id.'||'.$successful);
             }
@@ -144,5 +146,10 @@ class WxPayController extends Controller
         $url = $this->payment->scheme($product_id);
 
         return view('payment.good',compact('url','price'));
+    }
+
+    public function getCache()
+    {
+       dd(Cache::get('result')); 
     }
 }
