@@ -37,10 +37,7 @@ class WxPayController extends Controller
     }
     public function payCallback()
     {
-        //dd('I am callback');
-        $result = $this->payment->prepare($order);
-        $prepayId = $result->prepay_id;
-
+        dd('Iam call back');
         $response = $this->payment->handleNotify(function($notify, $successful){
             // 使用通知里的 "微信支付订单号" 或者 "商户订单号" 去自己的数据库找到订单
             $order = 查询订单($notify->transaction_id);
