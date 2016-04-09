@@ -48,8 +48,8 @@ class WxPayController extends Controller
             if(!isset($notify->transaction_id)){
                 Log::info('This is user id --'.$notify->openid.'|| 产品id '.$notify->product_id);
                 $order = new Order([
-                    'body'             => 'iPad mini 16G 白色',
-                    'detail'           => 'iPad mini 16G 白色',
+                    'body'             => Str::random(16),
+                    'detail'           => Str::random(16),
                     'out_trade_no'     => Str::random(16),
                     'total_fee'        => 1,
                     'notify_url'       => 'http://www.exingdong.com/wxpay/order/callback',
