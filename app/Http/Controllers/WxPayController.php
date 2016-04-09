@@ -43,7 +43,9 @@ class WxPayController extends Controller
     public function payCallback()
     {
         $response = $this->payment->handleNotify(function($notify, $successful){
-
+            if(is_null($notify)){
+                Log::error('Notify is empty');
+            }
             #返回值中不包含transaction_id时，此时用户尚未生成支付订单
             if(!isset($notify->transaction_id)){
                 Cache::add('notify',$notify,10);
