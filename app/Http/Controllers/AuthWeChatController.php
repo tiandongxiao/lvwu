@@ -148,12 +148,14 @@ class AuthWeChatController extends Controller
         $wechat = app('wechat');
         $userApi = $wechat->user;
 
+
         $wechat->server->setMessageHandler(function($message) use($userApi){
             switch ($message->MsgType) {
                 case 'event':
                     # 事件消息...
                     break;
                 case 'text':
+                    Log::info($userApi->get($message->FromUserName)->nickname);
                     //return '你好'.$userApi->get($message->FromUserName)->nickname;
                     return '你好';
                     break;
