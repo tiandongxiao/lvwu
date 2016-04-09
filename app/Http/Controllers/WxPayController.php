@@ -43,7 +43,7 @@ class WxPayController extends Controller
         $response = $this->payment->handleNotify(function($notify, $successful){
 
             #返回值中不包含transaction_id时，此时用户尚未下单
-            if(isset($notify->transaction_id)){
+            if(!isset($notify->transaction_id)){
                 Log::info('This is user id --'.$notify->openid.'|| 产品id '.$notify->product_id);
             }else{
                 Log::info('This is notify transaction id --'.$notify->transaction_id.'||'.$successful);
