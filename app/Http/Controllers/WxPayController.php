@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 
 class WxPayController extends Controller
 {
@@ -38,7 +39,12 @@ class WxPayController extends Controller
     public function payCallback()
     {
 
-        return true;
+        $response = [
+            'return_code' => 'SUCCESS',
+            'return_msg' => 'OK',
+        ];
+
+        return new Response(XML::build($response));
 
 //        $response = $this->payment->handleNotify(function($notify, $successful){
 //            // 使用通知里的 "微信支付订单号" 或者 "商户订单号" 去自己的数据库找到订单
@@ -67,8 +73,8 @@ class WxPayController extends Controller
 //
 //            return true; // 返回处理完成
 //        });
-
-        return $response;
+//
+//        return $response;
     }
 
     public function newOrder()
@@ -103,17 +109,17 @@ class WxPayController extends Controller
     public function payTest($product_id)
     {
         $price = random_int(1,10);
-        $order = new Order([
-            'body'             => 'iPad mini 16G 白色',
-            'detail'           => 'iPad mini 16G 白色',
-            'out_trade_no'     => '1217752501201407033233368018',
-            'total_fee'        => random_int(1,10),
-            'notify_url'       => 'http://www.exingdong.com/wxpay/callback',
-            'trade_type'        =>  'NATIVE'
-        ]);
-
-        $result = $this->payment->prepare($order);
-        $prepayId = $result->prepay_id;
+//        $order = new Order([
+//            'body'             => 'iPad mini 16G 白色',
+//            'detail'           => 'iPad mini 16G 白色',
+//            'out_trade_no'     => '1217752501201407033233368018',
+//            'total_fee'        => random_int(1,10),
+//            'notify_url'       => 'http://www.exingdong.com/wxpay/callback',
+//            'trade_type'        =>  'NATIVE'
+//        ]);
+//
+//        $result = $this->payment->prepare($order);
+//        $prepayId = $result->prepay_id;
         $url = $this->payment->scheme($product_id);
 
         return view('payment.good',compact('url','price'));
