@@ -59,7 +59,7 @@ class WxPayController extends Controller
 
                 $result = $this->payment->prepare($order);
                 $prepay_id = $result->prepay_id;
-
+                $result = $this->payment->prepare($prepay_id);
                 Cache::forget('result');
                 Cache::add('result',$result,10);
                 return $result;
