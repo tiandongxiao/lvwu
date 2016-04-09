@@ -119,7 +119,7 @@ class WxPayController extends Controller
             'body'             => '服务费',
             'detail'           => Str::random(16),
             'out_trade_no'     => Str::random(16),
-            'total_fee'        => 1,
+            'total_fee'        => random_int(10,1000),
             'trade_type'       =>  'NATIVE'
         ]);
 
