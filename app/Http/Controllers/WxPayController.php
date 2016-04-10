@@ -143,8 +143,6 @@ class WxPayController extends Controller
 
         $result = $this->payment->prepare($order);
         $response = $this->payment->configForAppPayment($result->prepay_id);
-        dd($response);
-
         return new Response(XML::build($response));
     }
 }
