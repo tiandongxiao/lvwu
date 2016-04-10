@@ -107,7 +107,9 @@ class WxPayController extends Controller
             'total_fee'        => random_int(10,1000),
             'trade_type'       =>  'NATIVE'
         ]);
+
         $result = $this->payment->prepare($order);
+        dd($result);
         $price = $order->total_fee;
         $url = $result->code_url;
 
