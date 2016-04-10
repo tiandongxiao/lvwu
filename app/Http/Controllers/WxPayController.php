@@ -131,7 +131,8 @@ class WxPayController extends Controller
     {
         $user = session('wechat.oauth_user'); // 拿到授权用户资料
 
-        dd($user);
+        $open_id = $user->getId();
+        dd($open_id);
 
         $order = new Order([
             'body'             => '服务费',
