@@ -26,7 +26,7 @@ class WxPayController extends Controller
             'key'                => 'sanmingzhi19811121tina19850811ov',
             'cert_path'          => 'http://www.exingdong.com/cer/wx/apiclient_cert.pem', // XXX: 绝对路径！！！！
             'key_path'           => 'http://www.exingdong.com/cer/wx/apiclient_key.pem',      // XXX: 绝对路径！！！！
-            'notify_url'         => 'http://www.exingdong.com/wxpay/callback',       // 你也可以在下单时单独设置来想覆盖它
+            //'notify_url'         => 'http://www.exingdong.com/wxpay/callback',       // 你也可以在下单时单独设置来想覆盖它
         ],
     ];
 
