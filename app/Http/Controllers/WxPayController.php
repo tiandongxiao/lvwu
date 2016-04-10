@@ -32,7 +32,7 @@ class WxPayController extends Controller
         $response = $this->payment->handleNotify(function($notify, $successful){
             #返回值中不包含transaction_id时，此时用户尚未生成支付订单
             Log::info('This is notify transaction id --'.$notify->transaction_id.'||'.$successful);
-            return redirect('/');
+            return true;
 
             // 使用通知里的 "微信支付订单号" 或者 "商户订单号" 去自己的数据库找到订单
             $order = 查询订单($notify->transaction_id);
@@ -131,6 +131,7 @@ class WxPayController extends Controller
     {
         $user = session('wechat.oauth_user'); // 拿到授权用户资料
         $open_id = $user->getId();
+        dd($user);
 
         $order = new Order([
             'body'             => '服务费',
