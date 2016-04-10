@@ -58,6 +58,10 @@ Route::group(['prefix' => 'wx'], function() {
 
     Route::get('users','AuthWeChatController@users');
     Route::get('user/{open_id}','AuthWeChatController@user');
+
+    Route::get('image','MaterialController@image');
+    Route::get('audio','MaterialController@audio');
+    Route::get('menu','WxMenuController@menu');
 });
 
 
