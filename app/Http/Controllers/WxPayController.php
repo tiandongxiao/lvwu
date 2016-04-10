@@ -142,7 +142,8 @@ class WxPayController extends Controller
         ]);
 
         $result = $this->payment->prepare($order);
-        $response = $this->payment->configForAppPayment($result->prepay_id);
-        return new Response(XML::build($response));
+        $params = $this->payment->configForPayment($result->prepay_id);
+        $price  = $order->total_fee;
+        return view('payment.js',compact('params','price'));
     }
 }
