@@ -19,12 +19,15 @@ class WxPayController extends Controller
     private $app;
 
     private $payment;
+    private $user;
 
 
     public function __construct(Application $app)
     {
         $this->app = $app;
         $this->payment = $this->app->payment;
+        $this->user = $this->app->user;
+
 
     }
     public function payCallback()
@@ -131,6 +134,8 @@ class WxPayController extends Controller
     {
         $user = session('wechat.oauth_user'); // 拿到授权用户资料
         $open_id = $user->getId();
+        $info = $this->user->get($open_id);
+        dd($info);
         dd($user);
 
         $order = new Order([

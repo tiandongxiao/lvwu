@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a29c3ea-39ac-4d3a-965b-aaa86e0fdac2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/WxPayController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/WxPayController.php" />
     </list>
     <ignored path="base.iws" />
@@ -60,8 +59,8 @@
       <file leaf-file-name="WxPayController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WxPayController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="132" column="34" selection-start-line="132" selection-start-column="34" selection-end-line="132" selection-end-column="34" />
+            <state relative-caret-position="380">
+              <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
               <folding>
                 <element signature="e#40#78#0#PHP" expanded="true" />
               </folding>
@@ -764,12 +763,12 @@
       <workItem from="1458869560992" duration="339000" />
       <workItem from="1460075709715" duration="42212000" />
       <workItem from="1460211945341" duration="1111000" />
-      <workItem from="1460251123032" duration="14067000" />
+      <workItem from="1460251123032" duration="14212000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="200227000" />
+    <option name="totallyTimeSpent" value="200372000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="6" y="36" width="1924" height="1038" extended-state="0" />
@@ -1189,8 +1188,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WxPayController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="132" column="34" selection-start-line="132" selection-start-column="34" selection-end-line="132" selection-end-column="34" />
+        <state relative-caret-position="380">
+          <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
           <folding>
             <element signature="e#40#78#0#PHP" expanded="true" />
           </folding>
