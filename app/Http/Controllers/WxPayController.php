@@ -142,10 +142,6 @@ class WxPayController extends Controller
         ]);
 
         $result = $this->payment->prepare($order);
-        dd($result);
-        $price = $order->total_fee;
-        $url = $result->code_url;
-
-        return view('payment.good',compact('url','price'));
+        $this->payment->configForPayment($result->prepay_id);
     }
 }
