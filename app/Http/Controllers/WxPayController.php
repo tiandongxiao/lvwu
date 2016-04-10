@@ -129,6 +129,10 @@ class WxPayController extends Controller
 
     public function payJSTest($product_id)
     {
+        $user = session('wechat.oauth_user'); // 拿到授权用户资料
+
+        dd($user);
+
         $order = new Order([
             'body'             => '服务费',
             'detail'           => Str::random(16),

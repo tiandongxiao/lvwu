@@ -88,10 +88,19 @@ Route::post('wxpay/order/callback', 'WxPayController@orderCallback');
 Route::get('pay', 'OrdersController@pay');
 Route::get('wxpay/test/{product_id}', 'WxPayController@payTest');
 Route::get('wxpay/native/{product_id}', 'WxPayController@payTest');
-Route::get('wxpay/jsapi/{product_id}', 'WxPayController@payJSTest');
+
 Route::get('buy', 'WxPayController@buyProduct');
 Route::get('cache', 'WxPayController@getCache');
 Route::get('notify', 'WxPayController@getNotify');
+
+Route::group(['middleware' => [ 'wechat.oauth']], function () {
+    Route::get('wxpay/jsapi/{product_id}', 'WxPayController@payJSTest');
+    Route::get('wx/userinfo', function () {
+        $user = session('wechat.oauth_user'); // 拿到授权用户资料
+
+        dd($user);
+    });
+});
 
 
 
