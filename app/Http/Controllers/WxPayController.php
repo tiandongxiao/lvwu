@@ -138,7 +138,7 @@ class WxPayController extends Controller
             'out_trade_no'     => Str::random(16),
             'total_fee'        => random_int(10,1000),
             'trade_type'       =>  'JSAPI',
-            'open_id'          => $open_id
+            'openid'          => $open_id
         ]);
 
         $result = $this->payment->prepare($order);
