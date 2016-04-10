@@ -95,11 +95,6 @@ Route::get('notify', 'WxPayController@getNotify');
 
 Route::group(['middleware' => [ 'wechat.oauth']], function () {
     Route::get('wxpay/jsapi/{product_id}', 'WxPayController@payJSTest');
-    Route::get('wx/userinfo', function () {
-        $user = session('wechat.oauth_user'); // 拿到授权用户资料
-
-        dd($user);
-    });
 });
 
 

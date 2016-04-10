@@ -7,6 +7,17 @@ return [
     'encoding_key' => env('WECHAT_ENCODING_KEY', 'YourEncodingAESKey'), // 加密模式需要，其它模式不需要
 
     /**
+     * OAuth 配置
+     *
+     * scopes：公众平台（snsapi_userinfo / snsapi_base），开放平台：snsapi_login
+     * callback：OAuth授权完成后的回调页地址(如果使用中间件，则随便填写。。。)
+     */
+     'oauth' => [
+         'scopes'   => array_map('trim', explode(',', env('WECHAT_OAUTH_SCOPES', 'snsapi_userinfo'))),
+         'callback' => env('WECHAT_OAUTH_CALLBACK', 'www.exingdong.com'),
+     ],
+
+    /**
      * 微信支付
      */
      'payment' => [
