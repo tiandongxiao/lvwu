@@ -180,11 +180,5 @@ class AuthWeChatController extends Controller
         $user = $this->wechat->user->get($open_id);
         dd($user);
     }
-
-    public function remark()
-    {
-        $this->wechat->user->remark('oKHQjuAhFF0ew7xpr_mLJjDLGYGc','绝代双骄');
-        return 'OK';
-    }
 }
 

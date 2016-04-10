@@ -58,8 +58,6 @@ Route::group(['prefix' => 'wx'], function() {
 
     Route::get('users','AuthWeChatController@users');
     Route::get('user/{open_id}','AuthWeChatController@user');
-    Route::get('user/remark','AuthWeChatController@remark');
-
 });
 
 
