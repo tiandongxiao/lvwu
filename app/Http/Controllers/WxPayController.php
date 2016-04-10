@@ -130,9 +130,7 @@ class WxPayController extends Controller
     public function payJSTest($product_id)
     {
         $user = session('wechat.oauth_user'); // 拿到授权用户资料
-
         $open_id = $user->getId();
-        dd($open_id);
 
         $order = new Order([
             'body'             => '服务费',
@@ -140,6 +138,7 @@ class WxPayController extends Controller
             'out_trade_no'     => Str::random(16),
             'total_fee'        => random_int(10,1000),
             'trade_type'       =>  'JSAPI',
+            'open_id'          => $open_id
         ]);
 
         $result = $this->payment->prepare($order);
