@@ -15,26 +15,12 @@ use Illuminate\Support\Facades\Log;
 
 class AuthWeChatController extends Controller
 {
-//    private $app;
-//
-//    public function __construct()
-//    {
-//        $this->app = new Application([
-//            'app_id'    =>   env('WECHAT_APPID'),
-//            'secret'    =>   env('WECHAT_SECRET'),
-//            'token'     =>   env('WECHAT_TOKEN'),
-//            'aes_key'   =>   env('WECHAT_ENCODING_KEY'),
-//
-//            // payment
-//            'payment' => [
-//                'merchant_id'        => env('WECHAT_PAYMENT_MERCHANT_ID'),
-//                'key'                => env('WECHAT_PAYMENT_KEY'),
-//                'cert_path'          => env('WECHAT_PAYMENT_CERT_PATH'),
-//                'key_path'           => env('WECHAT_PAYMENT_KEY_PATH'),
-//                'notify_url'         => 'http://www.exingdong.com/wxpay/callback',       // 你也可以在下单时单独设置来想覆盖它
-//            ],
-//        ]);
-//    }
+    private $wechat;
+
+    public function __construct(Application $wechat)
+    {
+        $this->wechat = $wechat;
+    }
 
     /**
      * 用户绑定微信入口，此方法只有auth用户可访问
@@ -150,12 +136,12 @@ class AuthWeChatController extends Controller
 
 
         $wechat->server->setMessageHandler(function($message) use($userApi){
+            
             switch ($message->MsgType) {
                 case 'event':
                     # 事件消息...
                     break;
                 case 'text':
-                    Log::info($userApi->get($message->FromUserName)->nickname);
                     return '你好! '.$userApi->get($message->FromUserName)->nickname;
                     break;
                 case 'image':
@@ -181,6 +167,24 @@ class AuthWeChatController extends Controller
         });
 
         return $wechat->server->serve();
+    }
+
+    public function users()
+    {
+        $users = $this->wechat->user->lists();
+        dd($users);
+    }
+
+    public function user($open_id)
+    {
+        $user = $this->wechat->user->get($open_id);
+        dd($user);
+    }
+
+    public function remark()
+    {
+        $this->wechat->user->remark('oKHQjuAhFF0ew7xpr_mLJjDLGYGc','绝代双骄');
+        return 'OK';
     }
 }
 
